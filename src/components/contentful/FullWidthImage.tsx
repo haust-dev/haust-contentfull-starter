@@ -7,26 +7,43 @@ export type FullWidthImageProps = {
   alt: string
   width: number
   height: number
+  mobileSrc?: string
 }
 
 export function FullWidthImage({
-  title,
   src,
   alt,
   width,
   height,
+  mobileSrc,
 }: FullWidthImageProps) {
   return (
     <div>
-      <Image
-        src={src}
-        alt={alt}
-        loading="eager"
-        priority
-        width={width}
-        height={height}
-        style={{ objectFit: 'contain', width: '100%' }}
-      />
+      {mobileSrc ? (
+        <div className="md:hidden">
+          <Image
+            src={mobileSrc}
+            alt={alt}
+            loading="eager"
+            width={width}
+            height={height}
+            style={{ objectFit: 'contain' }}
+            priority
+          />
+        </div>
+      ) : null}
+
+      <div className={mobileSrc ? 'hidden md:block' : ''}>
+        <Image
+          src={src}
+          alt={alt}
+          loading="eager"
+          width={width}
+          height={height}
+          style={{ objectFit: 'contain' }}
+          priority
+        />
+      </div>
     </div>
   )
 }

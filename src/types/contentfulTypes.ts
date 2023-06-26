@@ -5,7 +5,7 @@ export type Asset = {
   height: number
 }
 
-export type FullWidthImageSection = {
+export type ContentfulImageSection = {
   image: Asset
   mobileImage: Asset
 }
@@ -16,7 +16,7 @@ export type Page = {
   }
   slug: string
   topSectionCollection: {
-    items: FullWidthImageSection[]
+    items: ContentfulImageSection[]
   }
 }
 

@@ -25,6 +25,15 @@ export const GET_PAGE = gql`
                 height
               }
             }
+            ... on ContainedImage {
+              slug
+              image {
+                url
+                title
+                width
+                height
+              }
+            }
           }
         }
       }
