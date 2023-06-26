@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import Image from 'next/image'
 import { GET_PAGE } from '@/queries/getPage'
 import { GetPageData, FullWidthImageSection } from '@/types/contentfulTypes'
+import { FullWidthImage } from '@/components/contentful/FullWidthImage'
 
 export default function HomePage() {
   const { loading, error, data } = useQuery<GetPageData>(GET_PAGE)
@@ -12,28 +13,26 @@ export default function HomePage() {
   const page = data.pageCollection.items[0]
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <h1>{page.slug}</h1>
+    <div className="mx-auto">
       {page.topSectionCollection.items.map((section, index) => (
         <div className="relative" key={index}>
-          {isFullWidthImageSection(section) && (
+          {isFullWidthImage(section) && (
             <>
               {section.image && (
-                <div className="hidden md:block relative w-full h-40">
-                  <Image
+                <div className="hidden md:block relative">
+                  <FullWidthImage
                     src={section.image.url}
-                    alt={section.image.title}
-                    priority
-                    fill
-                    style={{ objectFit: 'cover' }}
+                    alt={section.image.alt}
+                    width={section.image.width}
+                    height={section.image.height}
                   />
                 </div>
               )}
               {section.mobileImage && (
-                <div className="block md:hidden">
-                  <Image
+                <div className="block md:hidden relative w-full">
+                  <FullWidthImage
                     src={section.mobileImage.url}
-                    alt={section.mobileImage.title}
+                    alt={section.mobileImage.alt}
                     width={section.mobileImage.width}
                     height={section.mobileImage.height}
                   />
@@ -48,8 +47,6 @@ export default function HomePage() {
 }
 
 // Helper function to narrow down the type
-function isFullWidthImageSection(
-  section: any,
-): section is FullWidthImageSection {
+function isFullWidthImage(section: any): section is FullWidthImageSection {
   return 'image' in section
 }

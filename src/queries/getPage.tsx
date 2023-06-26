@@ -10,7 +10,8 @@ export const GET_PAGE = gql`
         slug
         topSectionCollection {
           items {
-            ... on FullWidthImageSection {
+            ... on FullWidthImage {
+              slug
               image {
                 url
                 title
