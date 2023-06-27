@@ -20,14 +20,14 @@ export function FullWidthImage({
   return (
     <div>
       {mobileSrc ? (
-        <div className="md:hidden">
+        <div className="md:hidden mx-auto w-full">
           <Image
             src={mobileSrc}
             alt={alt}
             loading="eager"
             width={width}
             height={height}
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: 'contain', width: '100%' }}
             priority
           />
         </div>
@@ -40,7 +40,7 @@ export function FullWidthImage({
           loading="eager"
           width={width}
           height={height}
-          style={{ objectFit: 'contain' }}
+          style={{ objectFit: 'contain', width: '100%' }}
           priority
         />
       </div>
