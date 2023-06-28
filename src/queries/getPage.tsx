@@ -34,6 +34,12 @@ export const GET_PAGE = gql`
                 height
               }
             }
+            ... on RtCopy {
+              slug
+              copy {
+                json
+              }
+            }
           }
         }
       }

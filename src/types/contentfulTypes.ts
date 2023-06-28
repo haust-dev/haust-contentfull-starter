@@ -20,8 +20,32 @@ export type Page = {
   }
 }
 
+export type EmbededForm = {
+  sys: {
+    id: string
+  }
+  slug: string
+  content: string
+  contentTopInfo: {
+    json: string
+  }
+}
+
 export type GetPageData = {
   pageCollection: {
     items: Page[]
+  }
+}
+export type GetFormData = {
+  htmlEmbedCollection: {
+    content: EmbededForm
+  }
+}
+export type ContentfulRtCopySection = {
+  __typename: string
+  title: string
+  slug: string
+  copy: {
+    json: any
   }
 }
