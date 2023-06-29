@@ -1,3 +1,8 @@
+import { Document } from '@contentful/rich-text-types'
+
+export interface DocumentProp {
+  json: Document
+}
 export type Asset = {
   url: string
   title: string
@@ -26,9 +31,7 @@ export type EmbededForm = {
   }
   slug: string
   content: string
-  contentTopInfo: {
-    json: string
-  }
+  contentTopInfo: DocumentProp
 }
 
 export type GetPageData = {
@@ -38,7 +41,7 @@ export type GetPageData = {
 }
 export type GetFormData = {
   htmlEmbedCollection: {
-    content: EmbededForm
+    items: EmbededForm[]
   }
 }
 export type ContentfulRtCopySection = {
@@ -46,6 +49,6 @@ export type ContentfulRtCopySection = {
   title: string
   slug: string
   copy: {
-    json: any
+    json: Document
   }
 }

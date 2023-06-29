@@ -1,8 +1,27 @@
-import { BLOCKS, MARKS } from '@contentful/rich-text-types'
+import React, { ReactNode, ReactElement } from 'react'
+import {
+  BLOCKS,
+  MARKS,
+  Node as RichTextNode,
+  Document,
+} from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
+interface RenderMark {
+  [key: string]: (text: ReactNode) => ReactNode
+}
+
+interface RenderNode {
+  [key: string]: (node: RichTextNode, children: ReactNode) => ReactNode
+}
+
+interface Options {
+  renderMark: RenderMark
+  renderNode: RenderNode
+}
+
 // Define our own custom rendering rules
-const options = {
+const options: Options = {
   renderMark: {
     [MARKS.BOLD]: (text) => <strong>{text}</strong>,
     [MARKS.ITALIC]: (text) => <i>{text}</i>,
@@ -18,12 +37,18 @@ const options = {
   },
 }
 
-// RichTextCopy component definition
-export type RichTextCopyProps = {
-  document: any
+// Define the structure of the document prop
+interface DocumentProp {
+  json: Document
 }
 
-export function RichTextCopy({ document }: RichTextCopyProps) {
+export type RichTextCopyProps = {
+  document: DocumentProp
+}
+
+export function RichTextCopy({
+  document,
+}: RichTextCopyProps): ReactElement | null {
   if (!document) {
     console.error('The document prop is undefined.')
     return null

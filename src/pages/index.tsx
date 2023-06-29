@@ -2,7 +2,11 @@ import { useQuery } from '@apollo/client'
 import { RichTextCopy } from '@/components/contentful/RichTextCopy'
 
 import { GET_PAGE } from '@/queries/getPage'
-import { GetPageData, ContentfulImageSection } from '@/types/contentfulTypes'
+import {
+  GetPageData,
+  ContentfulImageSection,
+  ContentfulRtCopySection,
+} from '@/types/contentfulTypes'
 import { FullWidthImage } from '@/components/contentful/FullWidthImage'
 import { ContainedImage } from '@/components/contentful/ContainedImage'
 import Link from 'next/link'
@@ -12,6 +16,7 @@ export default function HomePage() {
 
   if (loading) return
   if (error) return <p>Error :(</p>
+  if (!data) return <p>No data :(</p>
 
   const page = data.pageCollection.items[0]
 
@@ -73,7 +78,7 @@ export default function HomePage() {
   )
 }
 
-function isFullWidthImage(section: any): section is FullWidthImage {
+function isFullWidthImage(section: any): boolean {
   return section.__typename === 'FullWidthImage'
 }
 
@@ -81,6 +86,8 @@ function isContainedImage(section: any): section is ContentfulImageSection {
   return section.__typename === 'ContainedImage'
 }
 
-function isRichTextCopy(section: any): section is RichTextCopy {
-  return section.__typename === 'RtCopy'
+function isRichTextCopy(
+  section: ContentfulImageSection | ContentfulRtCopySection,
+): section is ContentfulRtCopySection {
+  return (section as ContentfulRtCopySection).copy !== undefined
 }
