@@ -1,9 +1,8 @@
 import { useQuery } from '@apollo/client'
-import { GetFormData, GetPageData } from '@/types/contentfulTypes'
+import { GetFormData } from '@/types/contentfulTypes'
 import { createGetFormQuery } from '@/queries/getForm'
 import Container from '@/components/UI/Container'
 import { RichTextCopy } from '@/components/contentful/RichTextCopy'
-import { PageLayout } from '@/components/UI/PageLayout'
 
 export default function ContactForm() {
   const slug = 'contact-form'
