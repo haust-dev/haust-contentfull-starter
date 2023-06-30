@@ -31,7 +31,7 @@ const options: Options = {
       <p className="tracking-wider leading-normal text-xl">{children}</p>
     ),
     [BLOCKS.HEADING_1]: (node, children) => (
-      <h1 className="text-4xl tracking-wider leading-normal">{children}</h1>
+      <h1 className="text-4xl tracking-wider md:leading-normal">{children}</h1>
     ),
     [BLOCKS.HR]: () => <br />,
   },
