@@ -63,7 +63,7 @@ export default function HomePage() {
           )}
         </div>
       ))}
-      <div className="flex justify-center items-center flex-col sm:flex-row gap-2 md:gap-10 px-10 max-w-4xl mx-auto">
+      <div className="flex justify-center items-center flex-col sm:flex-row gap-2 md:gap-10 px-10 max-w-4xl mx-auto mb-10">
         <div className="flex items-center border text-center w-full max-w-xs border-gray-900 rounded-3xl leading-none font-medium">
           <Link className="w-full block p-2" href="/forms/wholesale-request">
             Wholesale Request

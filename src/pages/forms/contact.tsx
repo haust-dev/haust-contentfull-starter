@@ -1,14 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { GetFormData } from '@/types/contentfulTypes'
 import { createGetFormQuery } from '@/queries/getForm'
-import Container from '@/components/UI/Container'
 import { RichTextCopy } from '@/components/contentful/RichTextCopy'
+import { Container } from '@/components/UI/Container'
 
 export default function ContactForm() {
   const slug = 'contact-form'
   const { loading, error, data } = useQuery<GetFormData>(
     createGetFormQuery(slug),
   )
+
   if (loading) return <p></p>
   if (error) return <p>Error :(</p>
   if (!data) return <p>No data :(</p>
@@ -18,7 +19,7 @@ export default function ContactForm() {
 
   return (
     <Container>
-      <div className="my-20">
+      <div className="mb-10">
         <RichTextCopy document={contentTopInfo} />
       </div>
       <div

@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { GetFormData, GetPageData } from '@/types/contentfulTypes'
 import { createGetFormQuery } from '@/queries/getForm'
-import Container from '@/components/UI/Container'
 import { RichTextCopy } from '@/components/contentful/RichTextCopy'
+import { Container } from '@/components/UI/Container'
 
 export default function WholesaleRequest() {
   const slug = 'warranty-claim'
@@ -19,7 +19,7 @@ export default function WholesaleRequest() {
   return (
     <Container>
       {contentTopInfo && (
-        <div className="my-20 text-center">
+        <div className="mb-10">
           <RichTextCopy document={contentTopInfo} />
         </div>
       )}

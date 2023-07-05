@@ -1,19 +1,35 @@
-import React, { ReactNode } from 'react'
+import { useQuery } from '@apollo/client'
+import { GetFormData, GetImageBySlugData } from '@/types/contentfulTypes'
+import Image from 'next/image'
+import { createGetContainedImageQuery } from '@/queries/getContainedImage'
 import Link from 'next/link'
 
-type ContainerProps = {
-  children: ReactNode
-}
+export function Container({ children }) {
+  const slug = 'logo'
+  const { loading, error, data } = useQuery<GetImageBySlugData>(
+    createGetContainedImageQuery(slug),
+  )
 
-export default function Container({ children }: ContainerProps) {
+  if (loading) return <p></p>
+  if (error) return <p></p>
+  if (!data) return <p>Something went wrong...</p>
+  const image = data.containedImageCollection.items[0].image
+  console.log(image)
   return (
-    <div className="py-8">
-      <div className="px-8">
-        <Link className="border-b border-black uppercase font-medium" href="/">
-          Back to homepage
-        </Link>
+    <section className="my-4 px-4">
+      <div className="mx-auto max-w-4xl">
+        <div className="relative w-52 h-32 text-center mx-auto mb-4">
+          <Link href="/">
+            <Image
+              src={image.url}
+              style={{ objectFit: 'contain' }}
+              alt={image.title}
+              fill
+            />
+          </Link>
+        </div>
+        <div>{children}</div>
       </div>
-      <div className="px-8 max-w-4xl mx-auto">{children}</div>
-    </div>
+    </section>
   )
 }

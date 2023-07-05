@@ -52,3 +52,17 @@ export type ContentfulRtCopySection = {
     json: Document
   }
 }
+export type ContainedImage = {
+  sys: {
+    id: string
+  }
+  slug: string
+  image: Asset
+  title: string
+}
+
+export type GetImageBySlugData = {
+  containedImageCollection: {
+    items: ContainedImage[]
+  }
+}
