@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="icon" href="/favicon.png" />
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <script
           async

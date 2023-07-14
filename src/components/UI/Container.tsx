@@ -21,7 +21,7 @@ export function Container({ children }: { children: ReactNode }) {
         <div className="mb-4">
           <div className="relative flex justify-between items-center w-full">
             <div className="uppercase font-medium">
-              <p>Back to homepage</p>
+              <Link href="/"> back to homepage </Link>
             </div>
             <div className="relative w-20">
               <Link href="/">
